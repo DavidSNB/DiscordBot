@@ -1,9 +1,10 @@
-import personal from './personal.js';
-
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const prefix = "!";
 const fs = require('fs');
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 client.commands = new Discord.Collection();
 
@@ -41,4 +42,4 @@ client.on("message", (message) => {
     }
 });
 
-client.login("ODI2MjUxOTY2NjA2NzM3NDQ5.YGJxGw.B2hnTrLDrjlh3yj9d5IX7s6NyvU");
+client.login(process.env.TOKEN);
