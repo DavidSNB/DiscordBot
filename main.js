@@ -1,4 +1,4 @@
-import personal from './personal.js'
+import personal from './personal.js';
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
