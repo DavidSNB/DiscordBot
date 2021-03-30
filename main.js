@@ -1,24 +1,31 @@
+// Setting up Discord Client
 const Discord = require("discord.js");
 const client = new Discord.Client();
+
+// Command Prefix
 const prefix = "!";
+
+// File System Setup
 const fs = require('fs');
-const dotenv = require('dotenv');
-
-dotenv.config();
-
-client.commands = new Discord.Collection();
-
 const commandFiles = fs.readdirSync('./commands/').filter(file => file.endsWith('.js'));
 
+// Environment Varaiables Setup
+const dotenv = require('dotenv');
+dotenv.config();
+
+// Commands Import
+client.commands = new Discord.Collection();
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
 }
 
+// Initial Status Check
 client.once("ready", () => {
     console.log("Online!");
 });
 
+// Message Handler
 client.on("message", (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
 
@@ -42,4 +49,5 @@ client.on("message", (message) => {
     }
 });
 
+// Load the Bot
 client.login(process.env.TOKEN);
