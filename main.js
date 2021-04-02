@@ -55,6 +55,8 @@ client.on("message", (message) => {
         client.commands.get('mute').execute(message, args, Discord);
     } else if (command === 'reactionrole') {
         client.commands.get('reactionrole').execute(message, args, Discord, client);
+    }else if (command === 'tempreactionrole') {
+        client.commands.get('tempreactionrole').execute(message, args, Discord, client);
     }
 });
 
