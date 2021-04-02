@@ -1,6 +1,6 @@
 // Setting up Discord Client
 const Discord = require("discord.js");
-const client = new Discord.Client();
+const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
 
 // Command Prefix
 const prefix = "!";
@@ -25,6 +25,13 @@ client.once("ready", () => {
     console.log("Online!");
 });
 
+// New members joining
+client.on('guildMemberAdd', guildMember => {
+    let welcomeRole = guildMember.guild.roles.cache.find(role => role.name === 'Member');
+    guildMember.roles.add(welcomeRole)
+    guildMember.guild.channels.cache.get('755930421476458536').send(`Welcome <@${guildMember.user.id}>`);
+});
+
 // Message Handler
 client.on("message", (message) => {
     if (!message.content.startsWith(prefix) || message.author.bot) return;
@@ -46,6 +53,8 @@ client.on("message", (message) => {
         client.commands.get('ban').execute(message, args, Discord);
     } else if (command === 'mute') {
         client.commands.get('mute').execute(message, args, Discord);
+    } else if (command === 'reactionrole') {
+        client.commands.get('reactionrole').execute(message, args, Discord, client);
     }
 });
 
