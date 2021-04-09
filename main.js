@@ -3,8 +3,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
 
 // Environment Varaiables Setup (Token etc.)
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 
 // Commands Import
 client.commands = new Discord.Collection();
