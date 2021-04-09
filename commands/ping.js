@@ -1,6 +1,7 @@
 module.exports = {
     name: 'ping',
     aliases: ['test', 'p'],
+    permissions: [],
     description: "This is a ping command to check the bots response",
     execute(client, message, cmd, args) {
         if (cmd === "test") {

@@ -46,28 +46,27 @@ module.exports = (Discord, client, message) => {
         "MANAGE_EMOJIS",
     ]
 
-    if (command.permissions.length) {
-        let invalidPerms = []
-
-        for (const perm of command.permissions) {
-            if (!validPermissions.includes(perm)) {
-                return console.log(`Invalid Permission [${perm}] in ${command.name} command`)
-            }
-            if (!message.member.hasPermission(perm)) {
-                invalidPerms.push(perm);
-                break;
-            }
-        }
-
-        if (invalidPerms.length) {
-            return message.channel.send(`Missing Permissions: ${invalidPerms}`)
-        }
-    }
-
     try {
+        if (command.permissions.length) {
+            let invalidPerms = []
+
+            for (const perm of command.permissions) {
+                if (!validPermissions.includes(perm)) {
+                    return console.log(`Invalid Permission [${perm}] in ${command.name} command`)
+                }
+                if (!message.member.hasPermission(perm)) {
+                    invalidPerms.push(perm);
+                }
+            }
+
+            if (invalidPerms.length) {
+                return message.channel.send(`Missing Permissions: \`${invalidPerms}\``)
+            }
+        }
+
         command.execute(client, message, cmd, args, Discord);
     } catch (err) {
-        message.reply(`There was an error trying to execute this command, try typing ${prefix}help`)
+        message.reply(`There was an error trying to execute this command, try typing \`${prefix}help\``)
         console.log(err);
     }
 

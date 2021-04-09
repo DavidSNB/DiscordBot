@@ -1,6 +1,6 @@
 module.exports = {
     name: 'clear',
-    aliases: ['cl'],
+    aliases: ['cl', 'clr'],
     permissions: ["ADMINISTRATOR", "MANAGE_MESSAGES"],
     description: "Clear messages",
     async execute(client, message, cmd, args) {
