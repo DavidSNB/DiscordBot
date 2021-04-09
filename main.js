@@ -1,6 +1,6 @@
 // Setting up Discord Client
 const Discord = require("discord.js");
-const client = new Discord.Client({ partials: ["MESSAGE", "CHANNEL", "REACTION"] });
+const client = new Discord.Client(); //{ partials: ["MESSAGE", "CHANNEL", "REACTION"] }
 
 // Environment Varaiables Setup (Token etc.)
 require('dotenv').config();
